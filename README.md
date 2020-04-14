@@ -1,6 +1,6 @@
 # trying_vue
 
-some practice to do,
+some practice to do
 
 ## Project setup
 
