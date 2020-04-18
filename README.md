@@ -1,4 +1,4 @@
-# trying_vue
+# practiceVue
 
 some practice with vue
 this repository hold several branches, each focus on learning a different aspect or a subject of vue.
