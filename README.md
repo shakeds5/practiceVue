@@ -1,8 +1,6 @@
-# practiceVueWithAddons
+# practiceVue
 
-some practice with vue
-this branch is made with vuex and vue router
-
+some practice with vue.
 The idea of the project is learning English through English.
 The user searches for a word and the site automatically adds it along with its definition from the Oxford Dictionary.
 sticky note style.
