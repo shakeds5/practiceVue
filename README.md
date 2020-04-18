@@ -1,6 +1,7 @@
 # trying_vue
 
-some practice to do
+some practice with vue
+this branch is made without vuex
 
 ## Project setup
 
