@@ -1,6 +1,6 @@
 # practiceVue
 
-some practice with vue
+some practice with vue.  
 this repository hold several branches, each focus on learning a different aspect or a subject of vue.
 
 The idea of the project is learning English through English.
