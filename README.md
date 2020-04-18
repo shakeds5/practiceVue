@@ -1,12 +1,8 @@
-# practiceVueWithoutAddons
+# practiceVue
 
-some practice with vue
-this branch is made without vuex or vue router
-
-The idea of the project is learning English through English.
+some practice with vue.
+The idea of the project is learning English through English, sticky note style.
 The user searches for a word and the site automatically adds it along with its definition from the Oxford Dictionary.
-sticky note style.
-
 I have not yet implemented the Oxford API or created a server side.
 
 ## Project setup
