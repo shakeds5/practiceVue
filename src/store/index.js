@@ -17,17 +17,14 @@ export default new Vuex.Store({
     MutateFetchWords: (state, words) => (state.words = words),
     MutateDeleteWord: (state, id) =>
       (state.words = state.words.filter((word) => word.id !== id)),
-    // MutateDeleteWord need to change TODO
+    // MutateDeleteWord need to change TODO ?
     MutateDeletingMode: (state) =>
       (state.isUserDeleting = !state.isUserDeleting),
     MutateAddUserWord: (state, word) => state.words.unshift(word),
-    MutateFilterWords: (state, level) =>
-      (state.words = state.words.filter((word) => word.level !== level)),
-    // MutateFilterWords need to change TODO
   },
   actions: {
     FetchWords({ commit }) {
-      // await get TODO
+      // await get TODO dispatch()?
       const Demo = [
         {
           id: 0,
@@ -47,10 +44,10 @@ export default new Vuex.Store({
 
     DeleteWord({ commit }, id) {
       // await delete TODO
-
       commit("MutateDeleteWord", id);
     },
 
+    // change to setter TODO
     ToggleDeletingMode({ commit }) {
       commit("MutateDeletingMode");
     },
@@ -71,14 +68,13 @@ export default new Vuex.Store({
       };
       commit("MutateAddUserWord", wordToAdd);
     },
-
-    FilterWords({ commit }, option) {
-      commit("MutateFilterWords", option.level);
-    },
   },
   getters: {
     GetAllWords: (state) => state.words,
     GetIsUserDeleting: (state) => state.isUserDeleting,
+    GetWordsByLevel: (state) => (level) => {
+      return state.words.filter((word) => word.level === level);
+    },
   },
   modules: {},
 });

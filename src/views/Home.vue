@@ -2,7 +2,7 @@
   <div>
     <img class="VueLogo" alt="Vue logo" src="../assets/logo.png" />
     <AddOrDeleteWord />
-    <WordsList v-bind:words="words" />
+    <WordsList />
   </div>
 </template>
 
@@ -11,24 +11,11 @@
 import AddOrDeleteWord from "@/components/AddOrDeleteWord.vue";
 import WordsList from "@/components/WordsList.vue";
 
-import { mapActions } from "vuex";
-
 export default {
   name: "Home",
   components: {
     AddOrDeleteWord,
     WordsList,
-  },
-  methods: {
-    ...mapActions(["FetchWords"]),
-  },
-  created() {
-    this.FetchWords();
-  },
-  computed: {
-    words() {
-      return this.$store.state.words;
-    },
   },
 };
 </script>

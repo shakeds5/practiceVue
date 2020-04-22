@@ -17,6 +17,9 @@
           >
           </a>
         </li>
+        <li id="cleanFilter" name="cleanFilter" @click="$emit('cleanFilter')">
+          show all
+        </li>
       </ul>
     </i>
   </div>
@@ -38,17 +41,25 @@ export default {
 };
 </script>
 <style scoped>
-/* TODO change css */
+#cleanFilter {
+  clear: both;
+  font-weight: normal;
+  line-height: 1.6;
+  color: #333333;
+  white-space: nowrap;
+  text-align: center;
+  font-family: monospace;
+}
 .colorOption {
   margin: 5px;
 }
 .filter-modify-icon {
   top: 0;
-  margin-left: 50px;
   margin-top: 25px;
   cursor: pointer;
-  left: 0;
+  right: 0;
   position: absolute;
+  margin-right: 130px;
 }
 .filter-menu {
   position: absolute;
@@ -80,6 +91,9 @@ export default {
   width: 100%;
   position: relative;
   margin: 0;
+}
+.filter-menu > li:hover {
+  background-color: #7c7c7c;
 }
 li {
   list-style: none;
