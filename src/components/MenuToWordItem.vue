@@ -4,7 +4,10 @@
       class="dropdown-menu"
       v-bind:style="display ? 'display:block' : 'display:none'"
     >
-      <li v-for="(option, level) in options" :key="level">
+      <li
+        v-for="(option, level) in this.$store.state.levelOptions"
+        :key="level"
+      >
         <a
           href="javascript:void(0)"
           @click="updateOption(option)"
@@ -27,25 +30,14 @@
 export default {
   name: "MenuToWordItem",
   props: ["display"],
-  data: function() {
+  data() {
     return {
       placeholderText: "Please select a level",
-      options: [
-        { level: 1, name: "don`t Know", color: "red" },
-        { level: 2, name: "kind of", color: "#ecdc1d" },
-        { level: 3, name: "know", color: "green" },
-      ],
     };
   },
   methods: {
     updateOption(option) {
       this.$emit("updateOption", option);
-      // console.log("this.setMenuDisplay", this.setMenuDisplay);
-    },
-  },
-  watch: {
-    display: function() {
-      console.log("this.display", this.display);
     },
   },
 };

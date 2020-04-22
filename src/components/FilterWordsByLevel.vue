@@ -5,14 +5,17 @@
         class="filter-menu"
         v-bind:style="displayFilter == true ? 'display:block' : 'display:none'"
       >
-        <li v-for="(option, idx) in options" :key="idx">
+        <li
+          v-for="(option, level) in this.$store.state.levelOptions"
+          :key="level"
+        >
           <a
+            @click="$emit('FilerOption', option)"
             href="javascript:void(0)"
             class="colorOption"
             v-bind:style="`background-color:${option.color}`"
           >
           </a>
-          <!-- @click="$emit('FilerOption', option)" -->
         </li>
       </ul>
     </i>
@@ -22,13 +25,8 @@
 <script>
 export default {
   name: "FilterWordsByLevel",
-  data: function() {
+  data() {
     return {
-      options: [
-        { idx: 1, name: "don`t Know", color: "red" },
-        { idx: 2, name: "kind of", color: "#ecdc1d" },
-        { idx: 3, name: "know", color: "green" },
-      ],
       displayFilter: false,
     };
   },
@@ -39,8 +37,8 @@ export default {
   },
 };
 </script>
-
 <style scoped>
+/* TODO change css */
 .colorOption {
   margin: 5px;
 }

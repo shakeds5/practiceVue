@@ -1,6 +1,6 @@
 <template>
   <div class="WordsListClass">
-    <!-- <FilterWordsByLevel v-on:FilerOption="filterWords" /> -->
+    <FilterWordsByLevel v-on:FilerOption="FilterWords" />
     <div v-bind:key="word.id" v-for="word in words">
       <WordsItem v-bind:word="word" />
     </div>
@@ -9,23 +9,16 @@
 
 <script>
 import WordsItem from "./WordItem.vue";
-// import FilterWordsByLevel from "./FilterWordsByLevel.vue";
+import FilterWordsByLevel from "./FilterWordsByLevel.vue";
 
-// import { mapActions } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "WordsList",
-  components: { WordsItem },
+  components: { WordsItem, FilterWordsByLevel },
   props: ["words"],
-
   methods: {
-    deleteWordItem(id) {
-      console.log("deleting", id);
-    },
-    filterWords(option) {
-      //   this.$emit("filterWords", option);
-      console.log("filtering", option);
-    },
+    ...mapActions(["FilterWords"]),
   },
 };
 </script>

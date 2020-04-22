@@ -7,18 +7,27 @@ export default new Vuex.Store({
   state: {
     words: [],
     isUserDeleting: false,
+    levelOptions: [
+      { level: 1, name: "don`t Know", color: "red" },
+      { level: 2, name: "kind of", color: "#ecdc1d" },
+      { level: 3, name: "know", color: "green" },
+    ],
   },
   mutations: {
     MutateFetchWords: (state, words) => (state.words = words),
     MutateDeleteWord: (state, id) =>
       (state.words = state.words.filter((word) => word.id !== id)),
+    // MutateDeleteWord need to change TODO
     MutateDeletingMode: (state) =>
       (state.isUserDeleting = !state.isUserDeleting),
     MutateAddUserWord: (state, word) => state.words.unshift(word),
+    MutateFilterWords: (state, level) =>
+      (state.words = state.words.filter((word) => word.level !== level)),
+    // MutateFilterWords need to change TODO
   },
   actions: {
     FetchWords({ commit }) {
-      // await get
+      // await get TODO
       const Demo = [
         {
           id: 0,
@@ -37,7 +46,7 @@ export default new Vuex.Store({
     },
 
     DeleteWord({ commit }, id) {
-      // await delete
+      // await delete TODO
 
       commit("MutateDeleteWord", id);
     },
@@ -47,7 +56,7 @@ export default new Vuex.Store({
     },
 
     AddUserWord({ commit }, word) {
-      // await post
+      // await post TODO
       let wordToAdd = {
         // ++ Increment didnt work
         id: Math.max.apply(
@@ -61,6 +70,10 @@ export default new Vuex.Store({
         level: 2,
       };
       commit("MutateAddUserWord", wordToAdd);
+    },
+
+    FilterWords({ commit }, option) {
+      commit("MutateFilterWords", option.level);
     },
   },
   getters: {

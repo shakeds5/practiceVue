@@ -51,18 +51,15 @@ export default {
     ...mapGetters(["GetIsUserDeleting"]),
 
     OpenLevelsMenuOrDelete() {
+      this.setMenuDisplay = !this.setMenuDisplay;
       if (this.GetIsUserDeleting()) {
         this.setMenuDisplay = false;
         this.DeleteWord(this.$props.word.id);
-      } else {
-        this.setMenuDisplay = true;
       }
     },
     updateOption(option) {
-      // change the color based on level
+      // change the item color based on its level
       this.word.level = option.level;
-      this.setMenuDisplay = false;
-      console.log("this.setMenuDisplay", this.setMenuDisplay);
     },
   },
 };
