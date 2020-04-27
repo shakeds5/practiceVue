@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions, mapMutations } from "vuex";
 
 export default {
   name: "AddOrDeleteWord",
@@ -27,9 +27,10 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["ToggleDeletingMode", "AddUserWord"]),
+    ...mapActions(["AddUserWord"]),
     ...mapGetters(["GetIsUserDeleting"]),
-
+    ...mapMutations({ ToggleDeletingMode: "MutateDeletingMode" }),
+    // map `this.ToggleDeletingMode()` to `this.$store.commit('MutateDeletingMode')`
     addUserWord() {
       this.AddUserWord(this.userWord);
       // clear input text in entry

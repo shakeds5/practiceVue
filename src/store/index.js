@@ -15,8 +15,10 @@ export default new Vuex.Store({
   },
   mutations: {
     MutateFetchWords: (state, words) => (state.words = words),
-    MutateDeleteWord: (state, id) =>
-      (state.words = state.words.filter((word) => word.id !== id)),
+    MutateDeleteWord: (state, id) => {
+      state.words = state.words.filter((word) => word.id !== id);
+      console.log(state.words);
+    },
     // MutateDeleteWord need to change TODO ?
     MutateDeletingMode: (state) =>
       (state.isUserDeleting = !state.isUserDeleting),
@@ -24,7 +26,7 @@ export default new Vuex.Store({
   },
   actions: {
     FetchWords({ commit }) {
-      // await get TODO dispatch()?
+      // await get TODO
       const Demo = [
         {
           id: 0,
@@ -44,12 +46,8 @@ export default new Vuex.Store({
 
     DeleteWord({ commit }, id) {
       // await delete TODO
+      console.log("MutateDeleteWord", id);
       commit("MutateDeleteWord", id);
-    },
-
-    // change to setter TODO
-    ToggleDeletingMode({ commit }) {
-      commit("MutateDeletingMode");
     },
 
     AddUserWord({ commit }, word) {

@@ -4,7 +4,7 @@
       v-on:FilerOption="FilterWords"
       v-on:cleanFilter="cleanFilter"
     />
-    <div v-bind:key="word.id" v-for="word in words">
+    <div v-bind:key="word.id" v-for="word in displayWords">
       <WordsItem v-bind:word="word" />
     </div>
   </div>
@@ -19,7 +19,7 @@ export default {
   components: { WordsItem, FilterWordsByLevel },
   data() {
     return {
-      words: [],
+      displayWords: [],
     };
   },
   methods: {
@@ -31,12 +31,22 @@ export default {
       this.words = this.$store.getters.GetAllWords;
     },
   },
-  // async created (){ also possible
+  // async await syntax is also possible
   created() {
-    // TODO fix this
+    // TODO FetchWords is not async
     this.FetchWords().then(() => {
       this.words = this.$store.getters.GetAllWords;
     });
+  },
+  computed: {
+    words: {
+      get: function() {
+        return this.displayWords;
+      },
+      set: function(v) {
+        this.displayWords = v;
+      },
+    },
   },
 };
 </script>

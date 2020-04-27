@@ -16,7 +16,6 @@
       {{ word.definition }}
     </div>
 
-    <!-- 3 dots that with click open options to change colors-->
     <i
       @click="OpenLevelsMenuOrDelete"
       v-bind:class="
