@@ -37,6 +37,13 @@ export default {
     this.FetchWords().then(() => {
       this.words = this.$store.getters.GetAllWords;
     });
+    this.$store.subscribe((mutation) => {
+      if (mutation.type == "MutateDeleteWord") {
+        this.words = this.$store.getters.GetAllWords;
+        // mutation.payload will give the word's id,
+        // can get state as second parameter
+      }
+    });
   },
   computed: {
     words: {

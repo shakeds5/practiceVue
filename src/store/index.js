@@ -15,10 +15,8 @@ export default new Vuex.Store({
   },
   mutations: {
     MutateFetchWords: (state, words) => (state.words = words),
-    MutateDeleteWord: (state, id) => {
-      state.words = state.words.filter((word) => word.id !== id);
-      console.log(state.words);
-    },
+    MutateDeleteWord: (state, id) =>
+      (state.words = state.words.filter((word) => word.id !== id)),
     // MutateDeleteWord need to change TODO ?
     MutateDeletingMode: (state) =>
       (state.isUserDeleting = !state.isUserDeleting),
