@@ -4,7 +4,7 @@
       v-on:FilerOption="FilterWords"
       v-on:cleanFilter="cleanFilter"
     />
-    <div v-bind:key="word.id" v-for="word in displayWords">
+    <div v-bind:key="word.id" v-for="word in words">
       <WordsItem v-bind:word="word" />
     </div>
   </div>
@@ -19,7 +19,7 @@ export default {
   components: { WordsItem, FilterWordsByLevel },
   data() {
     return {
-      displayWords: [],
+      words: [],
     };
   },
   methods: {
@@ -45,21 +45,24 @@ export default {
       }
     });
   },
-  computed: {
-    words: {
-      get: function() {
-        return this.displayWords;
-      },
-      set: function(v) {
-        this.displayWords = v;
-      },
-    },
-  },
+  // computed: {
+  //   words: {
+  //     get: function() {
+  //       return this.displayWords;
+  //     },
+  //     set: function(v) {
+  //       this.displayWords = v;
+  //     },
+  //   },
+  // },
 };
 </script>
 
 <style scoped>
 .WordsListClass {
   padding: 15px;
+}
+/* 768px for tablet 1000px for computer */
+@media only screen and (min-width: 768px) {
 }
 </style>

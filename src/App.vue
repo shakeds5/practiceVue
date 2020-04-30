@@ -1,8 +1,13 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">
+        <i class="fas fa-home"></i>
+      </router-link>
+      |
+      <router-link to="/about">
+        <i class="far fa-question-circle"></i>
+      </router-link>
     </div>
     <router-view />
   </div>
@@ -26,7 +31,7 @@
 
 #nav a {
   font-weight: bold;
-  color: #777a7e;
+  color: #a2a4a7;
 }
 
 #nav a.router-link-exact-active {

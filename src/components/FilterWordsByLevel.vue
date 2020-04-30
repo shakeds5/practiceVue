@@ -54,12 +54,19 @@ export default {
   margin: 5px;
 }
 .filter-modify-icon {
-  top: 0;
+  /* top: 0;
   margin-top: 25px;
   cursor: pointer;
   right: 0;
   position: absolute;
-  margin-right: 130px;
+  margin-right: 130px; */
+
+  margin-top: 5px;
+  margin-right: 40px;
+  cursor: pointer;
+  right: 0;
+  top: 0;
+  position: absolute;
 }
 .filter-menu {
   position: absolute;

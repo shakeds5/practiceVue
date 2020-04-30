@@ -17,7 +17,6 @@ export default new Vuex.Store({
     MutateFetchWords: (state, words) => (state.words = words),
     MutateDeleteWord: (state, id) =>
       (state.words = state.words.filter((word) => word.id !== id)),
-    // MutateDeleteWord need to change TODO ?
     MutateDeletingMode: (state) =>
       (state.isUserDeleting = !state.isUserDeleting),
     MutateAddUserWord: (state, word) => state.words.unshift(word),
@@ -44,7 +43,7 @@ export default new Vuex.Store({
 
     DeleteWord({ commit }, id) {
       // await delete TODO
-      console.log("MutateDeleteWord", id);
+
       commit("MutateDeleteWord", id);
     },
 
