@@ -54,14 +54,7 @@ export default {
   margin: 5px;
 }
 .filter-modify-icon {
-  /* top: 0;
-  margin-top: 25px;
-  cursor: pointer;
-  right: 0;
-  position: absolute;
-  margin-right: 130px; */
-
-  margin-top: 5px;
+  margin-top: 10px;
   margin-right: 40px;
   cursor: pointer;
   right: 0;
@@ -69,6 +62,7 @@ export default {
   position: absolute;
 }
 .filter-menu {
+  right: 0;
   position: absolute;
   z-index: 1000;
   min-width: fit-content;
@@ -104,5 +98,30 @@ export default {
 }
 li {
   list-style: none;
+}
+
+/* portrait tablets, portrait iPad, landscape e-readers,
+landscape 800x480 or 854x480 phones */
+@media (min-width: 641px) {
+  .filter-menu > li > a {
+    padding: 20px 50px;
+  }
+  #cleanFilter {
+    font-size: x-large;
+  }
+  .filter-modify-icon {
+    margin-right: 55px;
+  }
+}
+
+/* big landscape tablets, laptops,
+ and desktops (min-width: 1025px)*/
+@media (min-width: 1025px) {
+  .filter-menu > li > a {
+    padding: 15px 30px;
+  }
+  #cleanFilter {
+    font-size: large;
+  }
 }
 </style>

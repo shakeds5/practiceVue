@@ -45,24 +45,11 @@ export default {
       }
     });
   },
-  // computed: {
-  //   words: {
-  //     get: function() {
-  //       return this.displayWords;
-  //     },
-  //     set: function(v) {
-  //       this.displayWords = v;
-  //     },
-  //   },
-  // },
 };
 </script>
 
 <style scoped>
 .WordsListClass {
   padding: 15px;
-}
-/* 768px for tablet 1000px for computer */
-@media only screen and (min-width: 768px) {
 }
 </style>

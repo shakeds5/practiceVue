@@ -1,6 +1,5 @@
 <template>
   <div>
-    <img class="VueLogo" alt="Vue logo" src="../assets/logo.png" />
     <AddOrDeleteWord />
     <WordsList />
   </div>
@@ -19,13 +18,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.VueLogo {
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  width: 35px;
-  margin: 30px;
-}
-</style>

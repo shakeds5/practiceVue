@@ -85,4 +85,20 @@ export default {
 li {
   list-style: none;
 }
+
+/* portrait tablets, portrait iPad, landscape e-readers, 
+landscape 800x480 or 854x480 phones */
+@media (min-width: 641px) {
+  .dropdown-menu > li {
+    font-size: x-large;
+  }
+}
+
+/* big landscape tablets, laptops,
+ and desktops (min-width: 1025px)*/
+@media (min-width: 1025px) {
+  .dropdown-menu > li {
+    font-size: medium;
+  }
+}
 </style>
