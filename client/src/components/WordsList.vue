@@ -4,7 +4,7 @@
       v-on:FilerOption="FilterWords"
       v-on:cleanFilter="cleanFilter"
     />
-    <div v-bind:key="word.id" v-for="word in words">
+    <div v-bind:key="word._id" v-for="word in words">
       <WordsItem v-bind:word="word" />
     </div>
   </div>
@@ -33,7 +33,6 @@ export default {
   },
   // async await syntax is also possible
   created() {
-    // TODO FetchWords is not async
     this.FetchWords().then(() => {
       this.words = this.$store.getters.GetAllWords;
     });

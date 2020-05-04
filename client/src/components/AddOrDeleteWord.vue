@@ -32,7 +32,7 @@ export default {
     ...mapGetters(["GetIsUserDeleting"]),
     ...mapMutations({ ToggleDeletingMode: "MutateDeletingMode" }),
     // map `this.ToggleDeletingMode()` to `this.$store.commit('MutateDeletingMode')`
-    addUserWord(event) {
+    addUserWord() {
       if (this.userWord.length != 0) {
         this.AddUserWord(this.userWord);
         this.userWord = ""; // clear input text in entry

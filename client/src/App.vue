@@ -48,6 +48,7 @@ html {
   width: 100%;
   /* min-height: 100vh; */
   background-color: #fdfdbf;
+  /* font-size: calc(100%+15vw); */
 }
 * {
   box-sizing: border-box;

@@ -35,6 +35,7 @@
 <script>
 import MenuToWordItem from "./MenuToWordItem.vue";
 import { mapGetters, mapActions } from "vuex";
+import WordsService from "../../api/WordsService";
 
 export default {
   name: "WordItem",
@@ -53,12 +54,19 @@ export default {
       this.setMenuDisplay = !this.setMenuDisplay;
       if (this.GetIsUserDeleting()) {
         this.setMenuDisplay = false;
-        this.DeleteWord(this.$props.word.id);
+        this.DeleteWord(this.$props.word._id);
       }
     },
-    updateOption(option) {
+    async updateOption(option) {
       // change the item color based on its level
-      this.word.level = option.level;
+      try {
+        await WordsService.updateWordLevel(this.word._id, option.level);
+        var updatedWord = { ...this.word, level: option.level };
+        await this.$store.commit("MutateUpdateWordLevel", updatedWord);
+        // this.word.level = option.level;
+      } catch (error) {
+        alert("there is a problem with the db, try again later", error);
+      }
     },
   },
 };
