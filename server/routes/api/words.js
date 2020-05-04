@@ -9,6 +9,16 @@ const client = new mongodb.MongoClient(uri, {
   useUnifiedTopology: true,
 });
 
+// there are Cursor Methods and Collection Methods
+// with collection methods we dont have to use `client.close();`
+// mongodb handles connection pooling for you.
+// but with Cursor Methods we shold close manually
+// to clean up the resource like so-
+// db.collection.method(<query>).close()
+// ALSO we have-
+// autoReconnect(defaults to true) which will attempt to keep the connection available.
+// You also have poolSize(defaults to 5)
+
 // Get words
 router.get("/", (req, res) => {
   client.connect(async (err) => {
@@ -25,7 +35,7 @@ router.get("/", (req, res) => {
       // perform actions on the collection object
       var records = await collection.find({}).toArray();
       // TODO reverse or sort records
-      // client.close();
+
       res.send(records);
     } catch (error) {
       res.status(503).send(); // Service Unavailable
@@ -51,7 +61,7 @@ router.post("/", (req, res) => {
         definition: req.body.definition,
         level: req.body.level,
       });
-      // client.close();
+
       res.status(201).send();
     } catch (error) {
       res.status(503).send(); // Service Unavailable
@@ -73,7 +83,7 @@ router.delete("/:id", (req, res) => {
         .db("EnglishStickyNoteStyleDB")
         .collection("words");
       await collection.deleteOne({ _id: new mongodb.ObjectID(req.params.id) });
-      // client.close();
+
       res.status(200).send();
     } catch (error) {
       res.status(503).send(); // Service Unavailable
@@ -101,8 +111,6 @@ router.post("/:id", (req, res) => {
           },
         }
       );
-
-      // client.close();
 
       res.status(201).send(); // request has been fulfilled
     } catch (error) {
