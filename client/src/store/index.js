@@ -32,24 +32,43 @@ const mutations = {
 
 const actions = {
   async FetchWords({ commit }) {
-    const words = await WordsService.getWords();
-    commit("MutateFetchWords", words);
+    try {
+      const words = await WordsService.getWords();
+      commit("MutateFetchWords", words);
+    } catch (error) {
+      alert("somthing went worng! refresh and try again");
+    }
   },
 
   async DeleteWord({ commit }, _id) {
-    await WordsService.deleteWordObj(_id);
-    commit("MutateDeleteWord", _id);
+    try {
+      await WordsService.deleteWordObj(_id);
+      commit("MutateDeleteWord", _id);
+    } catch (error) {
+      alert("somthing went worng! refresh and try again");
+    }
   },
 
   async AddUserWord({ commit }, word) {
     // TODO definition
-    let wordToAdd = {
-      searchingValue: word,
-      definition: "none",
-      level: 1,
-    };
-    await WordsService.insertWordObj(wordToAdd);
-    commit("MutateAddUserWord", wordToAdd);
+    try {
+      let WordDefinition = "";
+      try {
+        WordDefinition = await WordsService.GetWordDefinition(word);
+      } catch (error) {
+        WordDefinition = "could not find definition";
+      }
+      let wordToAdd = {
+        searchingValue: word,
+        definition: WordDefinition,
+        level: 1,
+      };
+      let insertWordId = await WordsService.insertWordObj(wordToAdd);
+      wordToAdd._id = insertWordId;
+      commit("MutateAddUserWord", wordToAdd);
+    } catch (error) {
+      alert("somthing went worng! refresh and try again");
+    }
   },
 };
 
@@ -66,5 +85,4 @@ export default new Vuex.Store({
   mutations,
   actions,
   getters,
-  // modules: {},
 });

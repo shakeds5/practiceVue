@@ -13,7 +13,13 @@ class WordsService {
   }
 
   static insertWordObj(obj) {
-    return axios.post(url, obj);
+    // return axios.post(url, obj);
+    return new Promise((resolve, reject) => {
+      axios
+        .post(url, obj)
+        .then((res) => resolve(res.data))
+        .catch((err) => reject(err));
+    });
   }
 
   static deleteWordObj(id) {
@@ -30,6 +36,17 @@ class WordsService {
           reject(err);
         }
       );
+    });
+  }
+
+  static GetWordDefinition(word) {
+    return new Promise((resolve, reject) => {
+      axios
+        .get(`${url}${word}`)
+        .then((res) => {
+          resolve(res.data);
+        })
+        .catch((err) => reject(err));
     });
   }
 }

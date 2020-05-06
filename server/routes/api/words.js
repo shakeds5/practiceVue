@@ -33,14 +33,62 @@ router.get("/", (req, res) => {
         .db("EnglishStickyNoteStyleDB")
         .collection("words");
       // perform actions on the collection object
-      var records = await collection.find({}).toArray();
-      // TODO reverse or sort records
-
-      res.send(records);
+      var records = await collection.find({}).toArray(); //.close();
+      res.send(records.reverse());
     } catch (error) {
       res.status(503).send(); // Service Unavailable
     }
   });
+});
+
+const Dictionary = require("oxford-dictionary-api");
+const http = require("https");
+
+router.get("/:word", (req, res) => {
+  const app_id = "45b787bc"; // insert your APP Id
+  const app_key = "ecf4ff8aae9baa19ccb047462c4f179e"; // insert your APP Key
+  const wordToSearch = req.params.word.trim().toLowerCase();
+
+  function getDefinition(word) {
+    return new Promise((resolve, reject) => {
+      const options = {
+        host: "od-api.oxforddictionaries.com",
+        port: "443",
+        path: `/api/v2/entries/en-gb/${word}?fields=definitions&strictMatch=false`,
+        method: "GET",
+        headers: {
+          app_id: app_id,
+          app_key: app_key,
+        },
+      };
+
+      http.get(options, (resp) => {
+        let body = "";
+        resp.on("data", (d) => {
+          body += d;
+        });
+        resp.on("end", () => {
+          let parsed = JSON.stringify(body);
+          resolve(parsed);
+        });
+        resp.on("error", () => {
+          reject();
+        });
+      });
+    });
+  }
+
+  getDefinition(wordToSearch)
+    .then((definition) => {
+      definition = JSON.parse(JSON.parse(definition));
+      definition =
+        definition.results[0].lexicalEntries[0].entries[0].senses[0]
+          .definitions[0];
+      res.send(definition);
+    })
+    .catch((err) => {
+      res.status(503).send(err); // Service Unavailable
+    });
 });
 
 // Add word
@@ -56,13 +104,13 @@ router.post("/", (req, res) => {
       const collection = client
         .db("EnglishStickyNoteStyleDB")
         .collection("words");
-      await collection.insertOne({
+      let DBresp = await collection.insertOne({
         searchingValue: req.body.searchingValue,
         definition: req.body.definition,
         level: req.body.level,
       });
 
-      res.status(201).send();
+      res.status(201).send(DBresp.insertedId);
     } catch (error) {
       res.status(503).send(); // Service Unavailable
     }
@@ -92,6 +140,7 @@ router.delete("/:id", (req, res) => {
 });
 
 router.post("/:id", (req, res) => {
+  console.log("im here!", req.params.id);
   client.connect(async (err) => {
     try {
       if (err) {

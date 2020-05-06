@@ -63,7 +63,7 @@ export default {
         await WordsService.updateWordLevel(this.word._id, option.level);
         var updatedWord = { ...this.word, level: option.level };
         await this.$store.commit("MutateUpdateWordLevel", updatedWord);
-        // this.word.level = option.level;
+        this.word.level = option.level;
       } catch (error) {
         alert("there is a problem with the db, try again later", error);
       }
